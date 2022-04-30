@@ -19,10 +19,12 @@ button {
   width: calc(100%/3 - 2rem);
   border: solid 1px black;
   margin: 1rem;
+  transition: background-color 1s;
 }
 
 #grid > .special {
   background-color: cornSilk;
+  transition: background-color 1s;
 }
 </style>
   </head>
@@ -39,14 +41,17 @@ button {
   </body>
 <script>
   const grid = document.querySelector('#grid');
+
+  grid.addEventListener('click', (ev)=> {
+    if(ev.target.id !== 'grid'){
+      ev.target.classList.toggle('special');
+      console.log(ev.target);
+    }
+  });
   const button = document.querySelector('button');
   button.addEventListener('click', (ev) => {
       const div = document.createElement('div');
       grid.appendChild(div);
-      div.addEventListener('click', (ev)=> {
-        ev.target.classList.toggle('special');
-        console.log(ev.target);
-      });
   });
 </script>
 </html>
